@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { complexities } from '../algorithms/complexities.js';
 import { APP_CONFIG } from '../config/appConfig.js';

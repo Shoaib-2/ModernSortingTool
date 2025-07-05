@@ -28,7 +28,7 @@
   --color-black-40: rgba(0, 0, 0, 0.4);
 }
 
-html.theme-dark {
+html.dark {
   --color-bg-primary: #1e293b;
   --color-bg-secondary: #334155;
   --color-text-primary: #f3f4f6;

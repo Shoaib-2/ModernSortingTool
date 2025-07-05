@@ -167,7 +167,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
       <div className="flex-1 flex flex-col justify-center">
         <div className="max-w-5xl w-full mx-auto p-4">
-          <Header />
+          <Header toggleTheme={toggleTheme} theme={theme} />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
             <div className="md:col-span-3 flex flex-col gap-6">
               <Controls
