@@ -30,12 +30,15 @@ export default function App() {
   });
 
   useEffect(() => {
+    const root = document.documentElement;
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
     }
     localStorage.setItem('theme', theme);
+    
+
   }, [theme]);
 
   const toggleTheme = () => {
@@ -164,37 +167,44 @@ export default function App() {
   }, [array]);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
-      <div className="flex-1 flex flex-col justify-center">
-        <div className="max-w-5xl w-full mx-auto p-4">
-          <Header toggleTheme={toggleTheme} theme={theme} />
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-            <div className="md:col-span-3 flex flex-col gap-6">
-              <Controls
-                arraySize={arraySize}
-                speed={speed}
-                currentAlgorithm={currentAlgorithm}
-                onSizeChange={handleSizeChange}
-                onSpeedChange={handleSpeedChange}
-                onAlgorithmChange={handleAlgorithmChange}
-                onRandomize={handleRandomize}
-                onExecute={handleExecute}
-                onStop={handleStop}
-                sorting={sorting}
-              />
-              <div className="rounded-lg shadow bg-white dark:bg-slate-800 p-4 min-h-[300px] flex items-end justify-center">
-                <Visualization array={array} highlight={highlight} />
+    <>
+      
+      <div className={`min-h-screen transition-colors duration-300 flex flex-col ${
+        theme === 'dark' 
+          ? 'bg-gray-900 text-white' 
+          : 'bg-gray-100 text-gray-900'
+      }`}>
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="max-w-5xl w-full mx-auto p-4">
+            <Header toggleTheme={toggleTheme} theme={theme} />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+              <div className="md:col-span-3 flex flex-col gap-6">
+                <Controls
+                  arraySize={arraySize}
+                  speed={speed}
+                  currentAlgorithm={currentAlgorithm}
+                  onSizeChange={handleSizeChange}
+                  onSpeedChange={handleSpeedChange}
+                  onAlgorithmChange={handleAlgorithmChange}
+                  onRandomize={handleRandomize}
+                  onExecute={handleExecute}
+                  onStop={handleStop}
+                  sorting={sorting}
+                />
+                <div className="rounded-lg shadow bg-white dark:bg-slate-800 p-4 min-h-[300px] flex items-end justify-center">
+                  <Visualization array={array} highlight={highlight} />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col gap-6">
-              <TimeComplexity currentAlgorithm={currentAlgorithm} executionTime={executionTime} />
-              <Search array={array} onSearch={handleSearch} searchResult={searchResult} />
-              {result && <div className="text-center text-indigo-700 font-semibold mt-2">{result}</div>}
+              <div className="flex flex-col gap-6">
+                <TimeComplexity currentAlgorithm={currentAlgorithm} executionTime={executionTime} />
+                <Search array={array} onSearch={handleSearch} searchResult={searchResult} />
+                {result && <div className="text-center text-indigo-700 dark:text-indigo-300 font-semibold mt-2">{result}</div>}
+              </div>
             </div>
           </div>
         </div>
+        <InstructionsModal />
       </div>
-      <InstructionsModal />
-    </div>
+    </>
   );
 }
