@@ -28,7 +28,7 @@ export default function Search({ array = [], onSearch, searchResult }) {
     <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 dark:border-slate-700/50 p-4 max-w-sm mx-auto transition-all duration-300 hover:shadow-xl">
       <div className="flex flex-col gap-3">
         {/* Title */}
-        <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 text-center">
+        <h3 className="font-semibold text-lg text-indigo-700 dark:text-indigo-300 flex items-center gap-2">
           Search Array
         </h3>
 
